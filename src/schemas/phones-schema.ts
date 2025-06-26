@@ -1,5 +1,5 @@
-import Joi from "joi";
-import { RegisterUserPhone } from "protocols/user-protocol";
+import  Joi from "joi";
+import { RegisterUserPhone } from "../protocols/user-protocol";
 
 export const phoneSchema = Joi.object<RegisterUserPhone>({
     cpf: Joi.string().required().length(11),

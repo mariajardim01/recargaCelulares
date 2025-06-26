@@ -1,7 +1,7 @@
 
 import { Request, Response } from "express";
 import httpStatus from "http-status";
-import { RegisterUserPhone, UserData } from "protocols/user-protocol";
+import { RegisterUserPhone, UserData } from "../protocols/user-protocol";
 import { CarrierValidation } from "../services/carrierValidate-service";
 import { InsertUser } from "../repositories/user-repository";
 import db from "../database";

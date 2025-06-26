@@ -1,4 +1,4 @@
-import express, { Request, Response, json } from "express";
+import  express, { Request, Response, json } from "express";
 import dotenv from "dotenv";
 import db from "./database";
 import { errorHandler } from "./middlewares/error-middleware";

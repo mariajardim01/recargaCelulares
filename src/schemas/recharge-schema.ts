@@ -1,4 +1,4 @@
-import Joi from "joi";
+import  Joi from "joi";
 import { Recharge } from "../protocols/recharge-protocol";
 
 export const rechargeSchema = Joi.object<Recharge>({

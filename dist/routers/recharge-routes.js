@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const recharges_controller_1 = require("../controllers/recharges-controller");
+const express_1 = require("express");
+const schema_middleware_1 = require("../middlewares/schema-middleware");
+const recharge_schema_1 = require("../schemas/recharge-schema");
+const rechargeRouter = (0, express_1.Router)();
+rechargeRouter.post("/recharges", (0, schema_middleware_1.validateSchema)(recharge_schema_1.rechargeSchema), recharges_controller_1.InsertRecharge);
+rechargeRouter.get("/recharges/:number", recharges_controller_1.ListRecharges);
+exports.default = rechargeRouter;
