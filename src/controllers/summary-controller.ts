@@ -53,10 +53,6 @@ export async function SummaryByCPF(req: Request, res: Response): Promise<void> {
 
     const result = {
       document: cpf,
-      user: {
-        id: user.id,
-        name: user.name,
-      },
       phones: AllPhones,
     };
     
