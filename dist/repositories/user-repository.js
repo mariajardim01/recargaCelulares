@@ -9,7 +9,7 @@ const database_1 = __importDefault(require("../database"));
 const http_status_1 = __importDefault(require("http-status"));
 async function InsertUser(user) {
     const userOnData = await database_1.default.query(`SELECT * FROM users WHERE cpf = $1`, [user.cpf]);
-    if (userOnData.rowCount > 0) {
+    if (userOnData.rowCount && userOnData.rowCount > 0) {
         return userOnData.rows[0];
     }
     try {

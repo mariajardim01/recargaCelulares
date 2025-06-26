@@ -6,7 +6,7 @@ import { error } from "console";
 export async function InsertUser(user: User) {
 
   const userOnData = await db.query(`SELECT * FROM users WHERE cpf = $1`,[user.cpf])
-  if ( userOnData.rowCount > 0){
+ if (userOnData.rowCount && userOnData.rowCount > 0){
     return userOnData.rows[0]
 
   }

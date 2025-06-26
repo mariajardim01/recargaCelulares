@@ -10,14 +10,14 @@ const http_status_1 = __importDefault(require("http-status"));
 async function InsertPhone(phone, user_id) {
     const phoneONData = await database_1.default.query(`SELECT * FROM phones WHERE number = $1`, [phone.number]);
     console.log(phoneONData);
-    if (phoneONData.rowCount > 0) {
+    if (phoneONData.rowCount && phoneONData.rowCount > 0) {
         throw ({
             error: http_status_1.default.CONFLICT,
             message: "this number is already in use"
         });
     }
     const phonesOfUserOnData = await database_1.default.query(`SELECT ALL * FROM phones WHERE user_id = $1`, [user_id]);
-    if (phonesOfUserOnData.rowCount >= 3) {
+    if (phonesOfUserOnData.rowCount && phonesOfUserOnData.rowCount >= 3) {
         throw ({
             error: http_status_1.default.CONFLICT,
             message: "User has reached the limit of phone numbers (maximum 3)"

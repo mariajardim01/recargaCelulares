@@ -1,20 +1,19 @@
-import { InsertNumber, NumberData } from "../protocols/phone-protocol";
-import db from "../database";
-import { error } from "console";
-import httpStatus from "http-status"
 import { CarrierData } from "../protocols/carrier";
+import db from "../database";
+import httpStatus from "http-status";
 
-export async function getCarrier(id:number) {
-    let carrierData = await db.query<CarrierData>(`SELECT * FROM carriers WHERE id = $1`,[id])
-    if (carrierData.rowCount == 0){
-        throw(
-            {
-                error: httpStatus.NOT_FOUND,
-                message: "carrier not found"
-            }
-        )
-    }
-     
-    carrierData = carrierData.rows[0]
-    return carrierData
+export async function getCarrier(id: number): Promise<CarrierData> {
+  const result = await db.query<CarrierData>(
+    `SELECT * FROM carriers WHERE id = $1`,
+    [id]
+  );
+
+  if (!result.rowCount || result.rowCount === 0) {
+    throw {
+      error: httpStatus.NOT_FOUND,
+      message: "carrier not found",
+    };
+  }
+
+  return result.rows[0];
 }

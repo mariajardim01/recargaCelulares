@@ -8,7 +8,7 @@ export async function InsertPhone(phone:InsertNumber, user_id: number)  {
     const phoneONData =await db.query(`SELECT * FROM phones WHERE number = $1`, [phone.number])
     console.log(phoneONData)
     
-    if (phoneONData.rowCount > 0){
+   if (phoneONData.rowCount && phoneONData.rowCount > 0){
         throw({
             error: httpStatus.CONFLICT,
             message: "this number is already in use"
@@ -16,7 +16,7 @@ export async function InsertPhone(phone:InsertNumber, user_id: number)  {
     } 
 
     const phonesOfUserOnData =await db.query(`SELECT ALL * FROM phones WHERE user_id = $1`, [user_id])
-    if (phonesOfUserOnData.rowCount >= 3){
+    if (phonesOfUserOnData.rowCount && phonesOfUserOnData.rowCount >= 3){
         throw({
             error: httpStatus.CONFLICT,
             message: "User has reached the limit of phone numbers (maximum 3)"
